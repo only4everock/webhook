@@ -5,7 +5,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const port = 80;
 
-app.post( function (req, res) {
+app.post( '/*',function (req, res) {
    console.log("-------------- New TradingView Alert --------------");
    console.log("Headers: " + JSON.stringify(req.headers, null, 3));
    console.log("Body: " + JSON.stringify(req.body, null, 3));
