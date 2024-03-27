@@ -15,21 +15,22 @@ app.use(function(req, res, next) {
 });
 
 app.post('/*', function (req, res) {
-    // Check if request is coming from pricealerts.tradingview.com
-     
-        // Make a GET request to Google.com
-        axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US')
-        .then(response => {
-            console.log("GET request to Google.com successful");
-        })
-        .catch(error => {
-            console.error("Error making GET request to Google.com:", error);
-        });
-    } else {
-        console.log("Request not from pricealerts.tradingview.com, skipping processing.");
-    }
+    // Only process if it's a POST request
+    axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US')
+    .then(response => {
+        console.log("GET request to callme successful");
+    })
+    .catch(error => {
+        console.error("Error making GET request to callme:", error);
+    });
 
     res.json({ message: "Thank you for the message" });
+});
+
+app.get('/*', function (req, res) {
+    // Log GET requests
+    console.log("GET request received.");
+    res.json({ message: "GET request received" });
 });
 
 app.listen(port, function () {
