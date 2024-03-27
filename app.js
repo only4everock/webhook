@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 
 app.post('/*', function (req, res) {
     // Check if request is coming from pricealerts.tradingview.com
-     {
+     
         // Make a GET request to Google.com
         axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US')
         .then(response => {
