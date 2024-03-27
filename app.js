@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.all('/*', function (req, res) {
+app.post('/*', function (req, res) {
     // Check if request is coming from pricealerts.tradingview.com
     if (req.headers.referer && req.headers.referer.startsWith("https://pricealerts.tradingview.com")) {
         // Make a GET request to Google.com
