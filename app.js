@@ -12,7 +12,7 @@ app.all('/*', function (req, res) {
    console.log("Body:"+ JSON.stringify(req.body, null, 3));
 
    // Check if request is coming from the desired domain (tradingview.com in this example)
-   if (req.headers.host && req.headers.host.endsWith("tradingview.com")) {
+   if (req.headers.host && req.headers.host.endsWith("pricealerts.tradingview.com")) {
        // Make a GET request to Google.com
        axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US')
        .then(response => {
