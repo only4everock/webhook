@@ -10,14 +10,21 @@ app.all('/*', function (req, res) {
    console.log("-------------- New Request --------------");
    console.log("Headers:"+ JSON.stringify(req.headers, null, 3));
    console.log("Body:"+ JSON.stringify(req.body, null, 3));
-   // Make a GET request to Google.com
-   axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US-Standard-B')
-   .then(response => {
-      console.log("GET request to Google.com successful");
-   })
-   .catch(error => {
-      console.error("Error making GET request to Google.com:", error);
-   });
+
+   // Check if request is coming from the desired domain (tradingview.com in this example)
+   if (req.headers.host && req.headers.host.endsWith("tradingview.com")) {
+       // Make a GET request to Google.com
+       axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US')
+       .then(response => {
+           console.log("GET request to Google.com successful");
+       })
+       .catch(error => {
+           console.error("Error making GET request to Google.com:", error);
+       });
+   } else {
+       console.log("Request not from tradingview.com, skipping processing.");
+   }
+
    res.json({ message: "Thank you for the message" });
 });
 
