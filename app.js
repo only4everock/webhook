@@ -11,8 +11,8 @@ app.all('/*', function (req, res) {
    console.log("Headers:"+ JSON.stringify(req.headers, null, 3));
    console.log("Body:"+ JSON.stringify(req.body, null, 3));
 
-   // Check if request is coming from the desired domain (tradingview.com in this example)
-   if (req.headers.host && req.headers.host.endsWith("pricealerts.tradingview.com")) {
+   // Check if request is coming from pricealerts.tradingview.com
+   if (req.headers.referer && req.headers.referer.startsWith("https://pricealerts.tradingview.com")) {
        // Make a GET request to Google.com
        axios.get('http://api.callmebot.com/start.php?source=web&user=+905302189431&text=tradingviewebak&lang=en-US')
        .then(response => {
@@ -22,7 +22,7 @@ app.all('/*', function (req, res) {
            console.error("Error making GET request to Google.com:", error);
        });
    } else {
-       console.log("Request not from tradingview.com, skipping processing.");
+       console.log("Request not from pricealerts.tradingview.com, skipping processing.");
    }
 
    res.json({ message: "Thank you for the message" });
